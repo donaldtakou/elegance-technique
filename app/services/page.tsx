@@ -1,0 +1,473 @@
+'use client'
+import React, { useState } from 'react';
+import { 
+  Phone, 
+  Mail, 
+  Clock, 
+  Menu, 
+  X, 
+  CheckCircle, 
+  Shield,
+  Calendar,
+  Facebook,
+  Instagram,
+  Wrench,
+  Wind,
+  Droplets,
+  Settings,
+  PackageOpen,
+  Zap
+} from 'lucide-react';
+import { FaCar, FaTools, FaMapMarkerAlt, FaPhone, FaFacebookF } from 'react-icons/fa';
+
+function SocialLinks() {
+  return (
+    <a href="https://www.tiktok.com/eltech_automotive" target="_blank" rel="noopener noreferrer">
+      <img
+        src="/icons/tiktok-icon.svg"
+        alt="TikTok"
+        className="w-6 h-6 hover:opacity-75"
+      />
+    </a>
+  );
+}
+
+function Elegance() {
+  return (
+      <img
+        src="/icons/logo2.jpg"
+        alt="elegance"
+        className="w-8 h-8 hover:opacity-75 rounded-full"
+      />
+  );
+}
+
+function Clim() {
+  return (
+      <img
+        src="/icons/clim.png"
+        alt="clim"
+        className="w-16 h-16 hover:opacity-75 rounded-full"
+      />
+  );
+}
+
+function Vidange() {
+  return (
+      <img
+        src="/icons/vidange.png"
+        alt="vidange"
+        className="w-16 h-16 hover:opacity-75 rounded-full"
+      />
+  );
+}
+
+function Frein() {
+  return (
+      <img
+        src="/icons/frein.png"
+        alt="frein"
+        className="w-16 h-16 hover:opacity-75 rounded-full"
+      />
+  );
+}
+
+function Filtre() {
+  return (
+      <img
+        src="/icons/filtre.png"
+        alt="filtre"
+        className="w-16 h-16 hover:opacity-75 rounded-full"
+      />
+  );
+}
+
+function Vente() {
+  return (
+      <img
+        src="/icons/vente.png"
+        alt="vente"
+        className="w-16 h-16 hover:opacity-75 rounded-full"
+      />
+  );
+}
+
+function Commande() {
+  return (
+      <img
+        src="/icons/commande.png"
+        alt="commande"
+        className="w-16 h-16 hover:opacity-75 rounded-full"
+      />
+  );
+}
+
+function Service() {
+  return (
+      <img
+        src="/icons/service.png"
+        alt="service"
+        className="w-16 h-16 hover:opacity-75 rounded-full"
+      />
+  );
+}
+
+export default function ServicesPage() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-sky-50 to-white">
+      {/* Header */}
+      <header className="bg-white shadow-lg relative z-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between items-center py-4">
+            {/* Logo */}
+            <div className="flex items-center space-x-3">
+              <div className="w-12 h-12 bg-sky-500 rounded-full flex items-center justify-center">
+                <Elegance />
+              </div>
+              <h1 className="text-2xl font-bold text-gray-900">Elegance-technique</h1>
+            </div>
+
+            {/* Desktop Navigation */}
+            <nav className="hidden lg:flex space-x-8">
+              <a href="/" className="block text-gray-600 hover:text-sky-600">ACCUEIL</a>
+              <a href="services" className="block bg-sky-500 text-white px-4 py-2 rounded">SERVICES</a>
+              <a href="produits" className="block text-gray-600 hover:text-sky-600">PRODUITS</a>
+              <a href="propos" className="block text-gray-600 hover:text-sky-600">A PROPOS</a>
+              <a href="contacts" className="block text-gray-600 hover:text-sky-600">CONTACTS</a>
+            </nav>
+
+            {/* Mobile Menu Button */}
+            <button 
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              className="lg:hidden p-2"
+            >
+              {isMenuOpen ? <X /> : <Menu />}
+            </button>
+          </div>
+        </div>
+
+        {/* Mobile Menu */}
+        {isMenuOpen && (
+          <div className="lg:hidden absolute top-full left-0 right-0 bg-white shadow-lg border-t">
+            <div className="p-4 space-y-4">
+              <a href="/" className="block text-gray-600 hover:text-sky-600">ACCUEIL</a>
+              <a href="services" className="block bg-sky-500 text-white px-4 py-2 rounded">SERVICES</a>
+              <a href="produits" className="block text-gray-600 hover:text-sky-600">PRODUITS</a>
+              <a href="propos" className="block text-gray-600 hover:text-sky-600">A PROPOS</a>
+              <a href="contacts" className="block text-gray-600 hover:text-sky-600">CONTACTS</a>
+            </div>
+          </div>
+        )}
+      </header>
+
+      {/* Hero Section */}
+      <section className="relative bg-gradient-to-r from-sky-600 via-sky-500 to-sky-700 text-white py-20">
+        <div className="absolute inset-0 bg-black opacity-10"></div>
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="text-3xl font-bold mb-3">NOS SERVICES PROFESSIONNELS</h2>
+          <p className="text-xl text-sky-100 max-w-3xl mx-auto">
+            Des prestations de qualité pour l'entretien et la réparation de votre véhicule
+          </p>
+        </div>
+      </section>
+
+      {/* Services détaillés */}
+      <section className="py-16 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-2xl font-bold text-gray-900 mb-3">EXPERTISE ET QUALITÉ</h2>
+            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+              Chez Élégance-Technique, nous offrons une gamme complète de services automobiles 
+              réalisés par des techniciens qualifiés avec des équipements de pointe.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {/* Climatisation */}
+            <div className="bg-gradient-to-br from-sky-50 to-white p-8 rounded-xl shadow-lg hover:shadow-2xl transition-all transform hover:-translate-y-2">
+              <div className="w-20 h-20 bg-sky-500 rounded-full flex items-center justify-center mb-6 mx-auto">
+                <Clim />
+              </div>
+              <h3 className="text-xl font-bold text-center mb-3 text-gray-800">Climatisation Automobile</h3>
+              <ul className="text-gray-600 space-y-2 text-sm">
+                <li className="flex items-center gap-2"><CheckCircle className="w-4 h-4 text-sky-500 flex-shrink-0" /> Diagnostic complet du système</li>
+                <li className="flex items-center gap-2"><CheckCircle className="w-4 h-4 text-sky-500 flex-shrink-0" /> Recharge de gaz réfrigérant</li>
+                <li className="flex items-center gap-2"><CheckCircle className="w-4 h-4 text-sky-500 flex-shrink-0" /> Détection et réparation de fuites</li>
+                <li className="flex items-center gap-2"><CheckCircle className="w-4 h-4 text-sky-500 flex-shrink-0" /> Remplacement de compresseur</li>
+                <li className="flex items-center gap-2"><CheckCircle className="w-4 h-4 text-sky-500 flex-shrink-0" /> Nettoyage antibactérien</li>
+                <li className="flex items-center gap-2"><CheckCircle className="w-4 h-4 text-sky-500 flex-shrink-0" /> Test de performance</li>
+              </ul>
+              <div className="mt-6 text-center">
+                <a href="contacts" className="bg-sky-500 hover:bg-sky-600 text-white px-6 py-2 rounded-lg inline-block transition">
+                  Demander un devis
+                </a>
+              </div>
+            </div>
+
+            {/* Vidange */}
+            <div className="bg-gradient-to-br from-sky-50 to-white p-8 rounded-xl shadow-lg hover:shadow-2xl transition-all transform hover:-translate-y-2">
+              <div className="w-20 h-20 bg-sky-500 rounded-full flex items-center justify-center mb-6 mx-auto">
+                <Vidange />
+              </div>
+              <h3 className="text-xl font-bold text-center mb-3 text-gray-800">Vidange Professionnelle</h3>
+              <ul className="text-gray-600 space-y-2 text-sm">
+                <li className="flex items-center gap-2"><CheckCircle className="w-4 h-4 text-sky-500 flex-shrink-0" /> Huiles certifiées (5W30, 10W40...)</li>
+                <li className="flex items-center gap-2"><CheckCircle className="w-4 h-4 text-sky-500 flex-shrink-0" /> Changement de filtre à huile</li>
+                <li className="flex items-center gap-2"><CheckCircle className="w-4 h-4 text-sky-500 flex-shrink-0" /> Contrôle des niveaux</li>
+                <li className="flex items-center gap-2"><CheckCircle className="w-4 h-4 text-sky-500 flex-shrink-0" /> Inspection des joints</li>
+                <li className="flex items-center gap-2"><CheckCircle className="w-4 h-4 text-sky-500 flex-shrink-0" /> Remise à zéro système</li>
+                <li className="flex items-center gap-2"><CheckCircle className="w-4 h-4 text-sky-500 flex-shrink-0" /> Conseils d'entretien personnalisés</li>
+              </ul>
+              <div className="mt-6 text-center">
+                <a href="contacts" className="bg-sky-500 hover:bg-sky-600 text-white px-6 py-2 rounded-lg inline-block transition">
+                  Prendre rendez-vous
+                </a>
+              </div>
+            </div>
+
+            {/* Freinage */}
+            <div className="bg-gradient-to-br from-sky-50 to-white p-8 rounded-xl shadow-lg hover:shadow-2xl transition-all transform hover:-translate-y-2">
+              <div className="w-20 h-20 bg-sky-500 rounded-full flex items-center justify-center mb-6 mx-auto">
+                <Frein />
+              </div>
+              <h3 className="text-xl font-bold text-center mb-3 text-gray-800">Système de Freinage</h3>
+              <ul className="text-gray-600 space-y-2 text-sm">
+                <li className="flex items-center gap-2"><CheckCircle className="w-4 h-4 text-sky-500 flex-shrink-0" /> Contrôle d'usure plaquettes/disques</li>
+                <li className="flex items-center gap-2"><CheckCircle className="w-4 h-4 text-sky-500 flex-shrink-0" /> Remplacement de pièces</li>
+                <li className="flex items-center gap-2"><CheckCircle className="w-4 h-4 text-sky-500 flex-shrink-0" /> Purge du liquide de frein</li>
+                <li className="flex items-center gap-2"><CheckCircle className="w-4 h-4 text-sky-500 flex-shrink-0" /> Vérification des flexibles</li>
+                <li className="flex items-center gap-2"><CheckCircle className="w-4 h-4 text-sky-500 flex-shrink-0" /> Test de performance</li>
+                <li className="flex items-center gap-2"><CheckCircle className="w-4 h-4 text-sky-500 flex-shrink-0" /> Réglage du frein à main</li>
+              </ul>
+              <div className="mt-6 text-center">
+                <a href="contacts" className="bg-sky-500 hover:bg-sky-600 text-white px-6 py-2 rounded-lg inline-block transition">
+                  Réserver
+                </a>
+              </div>
+            </div>
+
+            {/* Filtres */}
+            <div className="bg-gradient-to-br from-sky-50 to-white p-8 rounded-xl shadow-lg hover:shadow-2xl transition-all transform hover:-translate-y-2">
+              <div className="w-20 h-20 bg-sky-500 rounded-full flex items-center justify-center mb-6 mx-auto">
+                <Filtre />
+              </div>
+              <h3 className="text-xl font-bold text-center mb-3 text-gray-800">Système de Filtration</h3>
+              <ul className="text-gray-600 space-y-2 text-sm">
+                <li className="flex items-center gap-2"><CheckCircle className="w-4 h-4 text-sky-500 flex-shrink-0" /> Filtre à air moteur</li>
+                <li className="flex items-center gap-2"><CheckCircle className="w-4 h-4 text-sky-500 flex-shrink-0" /> Filtre à carburant</li>
+                <li className="flex items-center gap-2"><CheckCircle className="w-4 h-4 text-sky-500 flex-shrink-0" /> Filtre à huile</li>
+                <li className="flex items-center gap-2"><CheckCircle className="w-4 h-4 text-sky-500 flex-shrink-0" /> Filtre d'habitacle (pollen)</li>
+                <li className="flex items-center gap-2"><CheckCircle className="w-4 h-4 text-sky-500 flex-shrink-0" /> Nettoyage des boîtiers</li>
+                <li className="flex items-center gap-2"><CheckCircle className="w-4 h-4 text-sky-500 flex-shrink-0" /> Diagnostic d'encrassement</li>
+              </ul>
+              <div className="mt-6 text-center">
+                <a href="contacts" className="bg-sky-500 hover:bg-sky-600 text-white px-6 py-2 rounded-lg inline-block transition">
+                  Consulter
+                </a>
+              </div>
+            </div>
+
+            {/* Pièces détachées */}
+            <div className="bg-gradient-to-br from-sky-50 to-white p-8 rounded-xl shadow-lg hover:shadow-2xl transition-all transform hover:-translate-y-2">
+              <div className="w-20 h-20 bg-sky-500 rounded-full flex items-center justify-center mb-6 mx-auto">
+                <Vente />
+              </div>
+              <h3 className="text-xl font-bold text-center mb-3 text-gray-800">Pièces Détachées</h3>
+              <ul className="text-gray-600 space-y-2 text-sm">
+                <li className="flex items-center gap-2"><CheckCircle className="w-4 h-4 text-sky-500 flex-shrink-0" /> Pièces d'origine et adaptables</li>
+                <li className="flex items-center gap-2"><CheckCircle className="w-4 h-4 text-sky-500 flex-shrink-0" /> Large catalogue disponible</li>
+                <li className="flex items-center gap-2"><CheckCircle className="w-4 h-4 text-sky-500 flex-shrink-0" /> Toutes marques de véhicules</li>
+                <li className="flex items-center gap-2"><CheckCircle className="w-4 h-4 text-sky-500 flex-shrink-0" /> Garantie sur les pièces</li>
+                <li className="flex items-center gap-2"><CheckCircle className="w-4 h-4 text-sky-500 flex-shrink-0" /> Conseil technique inclus</li>
+                <li className="flex items-center gap-2"><CheckCircle className="w-4 h-4 text-sky-500 flex-shrink-0" /> Stock permanent</li>
+              </ul>
+              <div className="mt-6 text-center">
+                <a href="produits" className="bg-sky-500 hover:bg-sky-600 text-white px-6 py-2 rounded-lg inline-block transition">
+                  Voir le catalogue
+                </a>
+              </div>
+            </div>
+
+            {/* Commande express */}
+            <div className="bg-gradient-to-br from-sky-50 to-white p-8 rounded-xl shadow-lg hover:shadow-2xl transition-all transform hover:-translate-y-2">
+              <div className="w-20 h-20 bg-sky-500 rounded-full flex items-center justify-center mb-6 mx-auto">
+                <Commande />
+              </div>
+              <h3 className="text-xl font-bold text-center mb-3 text-gray-800">Commande Express</h3>
+              <ul className="text-gray-600 space-y-2 text-sm">
+                <li className="flex items-center gap-2"><CheckCircle className="w-4 h-4 text-sky-500 flex-shrink-0" /> Commande en ligne ou sur place</li>
+                <li className="flex items-center gap-2"><CheckCircle className="w-4 h-4 text-sky-500 flex-shrink-0" /> Suivi personnalisé</li>
+                <li className="flex items-center gap-2"><CheckCircle className="w-4 h-4 text-sky-500 flex-shrink-0" /> Délais réduits (24-48h)</li>
+                <li className="flex items-center gap-2"><CheckCircle className="w-4 h-4 text-sky-500 flex-shrink-0" /> Notifications d'arrivée</li>
+                <li className="flex items-center gap-2"><CheckCircle className="w-4 h-4 text-sky-500 flex-shrink-0" /> Service professionnel</li>
+                <li className="flex items-center gap-2"><CheckCircle className="w-4 h-4 text-sky-500 flex-shrink-0" /> Prix compétitifs</li>
+              </ul>
+              <div className="mt-6 text-center">
+                <a href="contacts" className="bg-sky-500 hover:bg-sky-600 text-white px-6 py-2 rounded-lg inline-block transition">
+                  Commander
+                </a>
+              </div>
+            </div>
+
+            {/* Service après-vente */}
+            <div className="bg-gradient-to-br from-sky-50 to-white p-8 rounded-xl shadow-lg hover:shadow-2xl transition-all transform hover:-translate-y-2 md:col-span-2 lg:col-span-3">
+              <div className="w-20 h-20 bg-sky-500 rounded-full flex items-center justify-center mb-6 mx-auto">
+                <Service />
+              </div>
+              <h3 className="text-xl font-bold text-center mb-3 text-gray-800">Service Après-Vente Complet</h3>
+              <div className="grid md:grid-cols-3 gap-4 text-gray-600 text-sm">
+                <ul className="space-y-2">
+                  <li className="flex items-center gap-2"><CheckCircle className="w-4 h-4 text-sky-500 flex-shrink-0" /> Suivi post-intervention</li>
+                  <li className="flex items-center gap-2"><CheckCircle className="w-4 h-4 text-sky-500 flex-shrink-0" /> Garantie pièces et main-d'œuvre</li>
+                  <li className="flex items-center gap-2"><CheckCircle className="w-4 h-4 text-sky-500 flex-shrink-0" /> Conseils mécaniques personnalisés</li>
+                </ul>
+                <ul className="space-y-2">
+                  <li className="flex items-center gap-2"><CheckCircle className="w-4 h-4 text-sky-500 flex-shrink-0" /> Assistance technique sur mesure</li>
+                  <li className="flex items-center gap-2"><CheckCircle className="w-4 h-4 text-sky-500 flex-shrink-0" /> Planning d'entretien prévisionnel</li>
+                  <li className="flex items-center gap-2"><CheckCircle className="w-4 h-4 text-sky-500 flex-shrink-0" /> Rappels automatiques</li>
+                </ul>
+                <ul className="space-y-2">
+                  <li className="flex items-center gap-2"><CheckCircle className="w-4 h-4 text-sky-500 flex-shrink-0" /> Support par WhatsApp</li>
+                  <li className="flex items-center gap-2"><CheckCircle className="w-4 h-4 text-sky-500 flex-shrink-0" /> Intervention rapide</li>
+                  <li className="flex items-center gap-2"><CheckCircle className="w-4 h-4 text-sky-500 flex-shrink-0" /> Service clientèle réactif</li>
+                </ul>
+              </div>
+              <div className="mt-8 text-center">
+                <a href="contacts" className="bg-sky-600 hover:bg-sky-700 text-white px-8 py-3 rounded-lg text-lg font-semibold inline-block transition transform hover:scale-105">
+                  Contactez-nous maintenant
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Section Avantages */}
+      <section className="py-16 bg-gradient-to-r from-sky-50 to-sky-100">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-2xl font-bold text-center text-sky-600 mb-8">POURQUOI NOUS CHOISIR ?</h2>
+          
+          <div className="grid md:grid-cols-4 gap-8">
+            <div className="bg-white p-6 rounded-xl shadow-lg text-center">
+              <div className="w-16 h-16 bg-sky-500 rounded-full flex items-center justify-center mb-4 mx-auto">
+                <CheckCircle className="text-white w-8 h-8" />
+              </div>
+              <h3 className="text-xl font-bold mb-2">Expertise Certifiée</h3>
+              <p className="text-gray-600 text-sm">Techniciens qualifiés et formés aux dernières technologies</p>
+            </div>
+
+            <div className="bg-white p-6 rounded-xl shadow-lg text-center">
+              <div className="w-16 h-16 bg-sky-500 rounded-full flex items-center justify-center mb-4 mx-auto">
+                <Shield className="text-white w-8 h-8" />
+              </div>
+              <h3 className="text-xl font-bold mb-2">Garantie Qualité</h3>
+              <p className="text-gray-600 text-sm">Toutes nos prestations sont garanties pour votre tranquillité</p>
+            </div>
+
+            <div className="bg-white p-6 rounded-xl shadow-lg text-center">
+              <div className="w-16 h-16 bg-sky-500 rounded-full flex items-center justify-center mb-4 mx-auto">
+                <Zap className="text-white w-8 h-8" />
+              </div>
+              <h3 className="text-xl font-bold mb-2">Service Rapide</h3>
+              <p className="text-gray-600 text-sm">Interventions efficaces pour limiter l'immobilisation de votre véhicule</p>
+            </div>
+
+            <div className="bg-white p-6 rounded-xl shadow-lg text-center">
+              <div className="w-16 h-16 bg-sky-500 rounded-full flex items-center justify-center mb-4 mx-auto">
+                <Calendar className="text-white w-8 h-8" />
+              </div>
+              <h3 className="text-xl font-bold mb-2">Disponibilité</h3>
+              <p className="text-gray-600 text-sm">Ouvert du lundi au samedi pour répondre à vos besoins</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Sidebar fixe */}
+      <section>
+        <div className="fixed right-2 top-1/3 flex flex-col items-center space-y-3 z-20">
+          <a href="services" className="bg-sky-600 p-4 rounded-xl shadow-xl text-white hover:bg-sky-800 transition shadow-lg hover:shadow-xl transition-all transform hover:-translate-x-8">
+            <FaTools />
+          </a>
+          <a href="https://www.google.com/maps/place/D%C3%B4vv+Nkomkana/@3.8840411,11.4960432,17z/data=!4m6!3m5!1s0x108bcfc9e6cc094d:0x4db70a7d34c9a455!8m2!3d3.8840584!4d11.4958491!16s%2Fg%2F11p5g2llb8?entry=ttu&g_ep=EgoyMDI1MDUyNy4wIKXMDSoASAFQAw%3D%3D" className="bg-sky-600 p-4 rounded-xl shadow-xl text-white hover:bg-sky-800 transition shadow-lg hover:shadow-xl transition-all transform hover:-translate-x-8">
+            <FaMapMarkerAlt />
+          </a>
+          <a href="https://wa.me/677132415" className="bg-sky-600 p-4 rounded-xl shadow-xl text-white hover:bg-sky-800 transition shadow-lg hover:shadow-xl transition-all transform hover:-translate-x-8">
+            <FaPhone />
+          </a>
+          <a href="https://web.facebook.com/profile.php?id=61574041633300" className="bg-sky-600 p-4 rounded-xl shadow-xl text-white hover:bg-sky-800 transition shadow-lg hover:shadow-xl transition-all transform hover:-translate-x-8">
+            <FaFacebookF />
+          </a>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="bg-gray-900 text-white py-12">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid md:grid-cols-4 gap-8">
+            <div>
+              <div className="flex items-center space-x-3 mb-6">
+                <div className="w-10 h-10 bg-sky-500 rounded-full flex items-center justify-center">
+                  <Elegance />
+                </div>
+                <span className="text-xl font-bold">ELEGANCE-TECHNIQUE</span>
+              </div>
+              <p className="text-gray-400">Votre partenaire de confiance pour l'entretien et la réparation de véhicules.</p>
+            </div>
+
+            <div>
+              <h4 className="text-lg font-semibold mb-4">Services</h4>
+              <ul className="space-y-2 text-gray-400">
+                <li><a href="/" className="hover:text-sky-400 transition-colors">Accueil</a></li>
+                <li><a href="produits" className="hover:text-sky-400 transition-colors">Produits</a></li>
+                <li><a href="propos" className="hover:text-sky-400 transition-colors">À propos</a></li>
+              </ul>
+            </div>
+
+            <div>
+              <h4 className="text-lg font-semibold mb-4">Support</h4>
+              <ul className="space-y-2 text-gray-400">
+                <li><a href="produits" className="hover:text-sky-400 transition-colors">Achats de pièces</a></li>
+                <li><a href="produits" className="hover:text-sky-400 transition-colors">Commandes senteurs</a></li>
+                <li><a href="contacts" className="hover:text-sky-400 transition-colors">Demande d'information</a></li>
+              </ul>
+            </div>
+
+            <div>
+              <h4 className="text-lg font-semibold mb-4">Contact</h4>
+              <ul className="space-y-2 text-gray-400">
+                <li className="flex items-center space-x-2">
+                  <Phone className="w-4 h-4" />
+                  <span>+237 677 132 415</span>
+                </li>
+                <li className="flex items-center space-x-2">
+                  <Mail className="w-4 h-4" />
+                  <span>contact@elegance-technique.com</span>
+                </li>
+                <li className="flex items-center space-x-2">
+                  <Clock className="w-4 h-4" />
+                  <span>Lun-Sam: 08h-18h30</span>
+                </li>
+              </ul>
+              <div className="flex space-x-4 mt-4">
+                <a href="https://web.facebook.com/profile.php?id=61574041633300" className="text-gray-400 hover:text-sky-400 transition-colors">
+                  <Facebook className="w-6 h-6" />
+                </a>
+                <a href="#" className="text-gray-400 hover:text-sky-400 transition-colors">
+                  <Instagram className="w-6 h-6" />
+                </a>
+                <SocialLinks/>
+              </div>
+            </div>
+          </div>
+
+          <div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+            <p>&copy; 2025 ELEGANCE-TECHNIQUE. Tous droits réservés. | ELTCH-AUTOMOTIVE</p>
+          </div>
+        </div>
+      </footer>
+    </div>
+  );
+}
