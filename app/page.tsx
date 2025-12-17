@@ -267,7 +267,7 @@ export default function Home() {
         </div>
 
         {/* Content Overlay */}
-        <div className="absolute inset-0 flex items-end justify-center pb-20 z-10">
+        <div className="absolute inset-0 flex items-center justify-center z-10">
           <div className="text-center px-4 max-w-4xl">
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 text-white drop-shadow-[0_8px_16px_rgba(0,0,0,1)] [text-shadow:_2px_2px_8px_rgb(0_0_0_/_100%),_4px_4px_16px_rgb(0_0_0_/_80%)] animate-fade-in">
               <span className="text-sky-400">ELEGANCE</span>-TECHNIQUE
@@ -275,8 +275,8 @@ export default function Home() {
             <h3 className="text-xl md:text-2xl lg:text-3xl font-bold mb-6 text-white drop-shadow-[0_8px_16px_rgba(0,0,0,1)] [text-shadow:_2px_2px_8px_rgb(0_0_0_/_100%),_4px_4px_16px_rgb(0_0_0_/_80%)]">
               𝗖𝗟𝗜𝗠𝗔𝗧𝗜𝗦𝗔𝗧𝗜𝗢𝗡 𝗘𝗧 𝗦𝗘𝗥𝗩𝗜𝗖𝗘𝗦 𝗔𝗨𝗧𝗢 𝗖𝗘𝗥𝗧𝗜𝗙𝗜𝗘́𝗦
             </h3>
-            <div className="bg-black/50 backdrop-blur-sm px-6 py-4 rounded-2xl inline-block">
-              <p className="text-base md:text-lg text-white font-bold leading-relaxed">
+            <div className="bg-white backdrop-blur-md px-4 py-3 rounded-xl inline-block mb-8 max-w-2xl">
+              <p className="text-sm md:text-base text-white font-semibold leading-relaxed">
                 Chez Élégance-Technique, toutes nos prestations de climatisation et de services automobiles sont 
                 réalisées avec rigueur. Nous garantissons la qualité, la fiabilité et votre tranquillité 
                 d'esprit à chaque intervention.
