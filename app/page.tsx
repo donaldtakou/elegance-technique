@@ -268,40 +268,42 @@ export default function Home() {
 
         {/* Content Overlay */}
         <div className="absolute inset-0 flex items-center justify-center z-10">
-          <div className="text-center px-4 max-w-4xl">
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 text-white drop-shadow-[0_8px_16px_rgba(0,0,0,1)] [text-shadow:_2px_2px_8px_rgb(0_0_0_/_100%),_4px_4px_16px_rgb(0_0_0_/_80%)] animate-fade-in">
+          <div className="text-center px-14 md:px-4 max-w-4xl w-full">
+            <h2 className="text-2xl md:text-5xl lg:text-6xl font-bold mb-2 md:mb-4 text-white drop-shadow-[0_8px_16px_rgba(0,0,0,1)] [text-shadow:_2px_2px_8px_rgb(0_0_0_/_100%),_4px_4px_16px_rgb(0_0_0_/_80%)] animate-fade-in">
               <span className="text-sky-400">ELEGANCE</span>-TECHNIQUE
             </h2>
-            <h3 className="text-xl md:text-2xl lg:text-3xl font-bold mb-6 text-white drop-shadow-[0_8px_16px_rgba(0,0,0,1)] [text-shadow:_2px_2px_8px_rgb(0_0_0_/_100%),_4px_4px_16px_rgb(0_0_0_/_80%)]">
+            <h3 className="text-base md:text-2xl lg:text-3xl font-bold mb-3 md:mb-6 text-white drop-shadow-[0_8px_16px_rgba(0,0,0,1)] [text-shadow:_2px_2px_8px_rgb(0_0_0_/_100%),_4px_4px_16px_rgb(0_0_0_/_80%)]">
               𝗖𝗟𝗜𝗠𝗔𝗧𝗜𝗦𝗔𝗧𝗜𝗢𝗡 𝗘𝗧 𝗦𝗘𝗥𝗩𝗜𝗖𝗘𝗦 𝗔𝗨𝗧𝗢 𝗖𝗘𝗥𝗧𝗜𝗙𝗜𝗘́𝗦
             </h3>
-            <div className="bg-white backdrop-blur-md px-4 py-3 rounded-xl inline-block mb-8 max-w-2xl">
-              <p className="text-sm md:text-base text-white font-semibold leading-relaxed">
+            <div className="bg-white backdrop-blur-md px-3 md:px-4 py-2 md:py-3 rounded-xl inline-block mb-3 md:mb-8 max-w-2xl mx-auto">
+              <p className="text-xs md:text-base text-white font-semibold leading-relaxed">
                 Chez Élégance-Technique, toutes nos prestations de climatisation et de services automobiles sont 
                 réalisées avec rigueur. Nous garantissons la qualité, la fiabilité et votre tranquillité 
                 d'esprit à chaque intervention.
               </p>
             </div>
-            <a href='contacts' className="inline-block bg-sky-500 hover:bg-sky-600 text-white px-8 py-3 rounded-lg text-base font-semibold transition-all transform hover:scale-110 shadow-2xl hover:shadow-sky-500/50 animate-bounce-subtle">
-              DEMANDE D'INFORMATION
-            </a>
+            <div className="w-full px-2">
+              <a href='contacts' className="inline-block bg-sky-500 hover:bg-sky-600 text-white px-6 md:px-8 py-2 md:py-3 rounded-lg text-sm md:text-base font-semibold transition-all transform hover:scale-110 shadow-2xl hover:shadow-sky-500/50 animate-bounce-subtle">
+                DEMANDE D'INFORMATION
+              </a>
+            </div>
           </div>
         </div>
 
         {/* Navigation Buttons */}
         <button
           onClick={prevSlide}
-          className="absolute left-4 top-1/2 -translate-y-1/2 z-20 bg-white/20 hover:bg-white/40 backdrop-blur-sm text-white p-3 rounded-full transition-all transform hover:scale-110"
+          className="absolute left-1 md:left-4 top-1/2 -translate-y-1/2 z-20 bg-white/30 hover:bg-white/50 backdrop-blur-sm text-white p-2 md:p-3 rounded-full transition-all transform hover:scale-110"
           aria-label="Previous slide"
         >
-          <ChevronLeft size={28} />
+          <ChevronLeft size={20} className="md:w-7 md:h-7" />
         </button>
         <button
           onClick={nextSlide}
-          className="absolute right-4 top-1/2 -translate-y-1/2 z-20 bg-white/20 hover:bg-white/40 backdrop-blur-sm text-white p-3 rounded-full transition-all transform hover:scale-110"
+          className="absolute right-1 md:right-4 top-1/2 -translate-y-1/2 z-20 bg-white/30 hover:bg-white/50 backdrop-blur-sm text-white p-2 md:p-3 rounded-full transition-all transform hover:scale-110"
           aria-label="Next slide"
         >
-          <ChevronRight size={28} />
+          <ChevronRight size={20} className="md:w-7 md:h-7" />
         </button>
 
         {/* Dots Indicator */}
