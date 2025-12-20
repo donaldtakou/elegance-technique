@@ -14,7 +14,10 @@ import {
   FileText,
   Shield,
   Facebook,
-  Linkedin
+  Linkedin,
+  MessageCircle,
+  Send,
+  Minimize2
 } from 'lucide-react';
 import { FaCar, FaTools, FaMapMarkerAlt, FaPhone, FaFacebookF } from 'react-icons/fa';
 import dynamic from 'next/dynamic';
@@ -123,6 +126,11 @@ export default function Home() {
   const [showMap, setShowMap] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [isChatOpen, setIsChatOpen] = useState(false);
+  const [messages, setMessages] = useState<{text: string, isBot: boolean}[]>([
+    { text: "Bonjour ! Je suis l'assistant virtuel d'Elegance-Technique. Comment puis-je vous aider aujourd'hui ?", isBot: true }
+  ]);
+  const [inputMessage, setInputMessage] = useState('');
   const [formData, setFormData] = useState({
     nom: '',
     email: '',
@@ -196,10 +204,65 @@ export default function Home() {
     }
   };
 
+  const chatResponses: {[key: string]: string} = {
+    'services': "Nous proposons plusieurs services : Climatisation automobile, Vente de pièces détachées, Vidange professionnelle, Système de freinage, Système de filtration, et Services automobiles complets.",
+    'climatisation': "Notre service de climatisation inclut : diagnostic complet, recharge de gaz réfrigérant, détection de fuites, remplacement de compresseur et nettoyage antibactérien. Contactez-nous pour un rendez-vous !",
+    'prix': "Les tarifs varient selon le service. Pour un devis personnalisé, contactez-nous au +237 677 132 415 ou +237 696 415 898.",
+    'horaires': "Nous sommes ouverts du Lundi au Vendredi de 8h à 18h et le Samedi de 8h à 16h.",
+    'contact': "Vous pouvez nous joindre par téléphone au +237 677 132 415 ou +237 696 415 898, par email à contact@elegance-technique.com, ou nous rendre visite à Yaoundé Dôvv.",
+    'localisation': "Nous sommes situés à Yaoundé, quartier Dôvv Nkomkana, Cameroun.",
+    'rendez-vous': "Pour prendre rendez-vous, vous pouvez nous appeler au +237 677 132 415, nous envoyer un message WhatsApp, ou utiliser notre formulaire de contact sur le site.",
+    'pieces': "Nous avons un large catalogue de pièces d'origine et compatibles : compresseurs, condenseurs, évaporateurs, filtres et accessoires de climatisation. Livraison sous 24-48h.",
+    'vidange': "Nous utilisons des huiles certifiées 5W30, 10W40. Le service inclut le changement de filtre, contrôle des niveaux, et inspection complète.",
+    'freinage': "Notre service freinage comprend le contrôle d'usure, remplacement de plaquettes et disques, et purge du liquide de frein.",
+    'garantie': "Nous offrons une garantie sur toutes nos interventions. Les détails varient selon le service.",
+    'paiement': "Nous acceptons les paiements en espèces et par mobile money.",
+    'urgence': "Pour une urgence, appelez-nous directement au +237 677 132 415. Nous faisons notre possible pour répondre rapidement.",
+    'marques': "Nous intervenons sur toutes marques : Toyota, Mercedes, BMW, Volkswagen, Hyundai, Ford, Nissan, Peugeot, Renault, Kia, Mazda, Suzuki, et bien d'autres."
+  };
+
+  const handleChatSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!inputMessage.trim()) return;
+
+    const userMessage = inputMessage.trim();
+    setMessages(prev => [...prev, { text: userMessage, isBot: false }]);
+    setInputMessage('');
+
+    setTimeout(() => {
+      let response = "Je n'ai pas de réponse spécifique à cette question. Pour plus d'informations, veuillez nous contacter au +237 677 132 415 ou par email à contact@elegance-technique.com.";
+      
+      const lowerMessage = userMessage.toLowerCase();
+      for (const [key, value] of Object.entries(chatResponses)) {
+        if (lowerMessage.includes(key)) {
+          response = value;
+          break;
+        }
+      }
+
+      if (lowerMessage.includes('bonjour') || lowerMessage.includes('salut') || lowerMessage.includes('hello')) {
+        response = "Bonjour ! Comment puis-je vous aider concernant nos services automobiles ?";
+      } else if (lowerMessage.includes('merci')) {
+        response = "Je vous en prie ! N'hésitez pas si vous avez d'autres questions.";
+      }
+
+      setMessages(prev => [...prev, { text: response, isBot: true }]);
+    }, 500);
+  };
+
+  const quickQuestions = [
+    "Quels sont vos services ?",
+    "Vos horaires ?",
+    "Comment vous contacter ?",
+    "Où êtes-vous situés ?"
+  ];
+
+  const handleQuickQuestion = (question: string) => {
+    setInputMessage(question);
+  };
+
   return (
-    <div className="min-h-screen bg-gradient-to-br from-sky-50 to-white">
-      {/* Header */}
-      <header className="bg-white shadow-lg relative z-50">
+    <div className="min-h-screen bg-gradient-to-br from-sky-50 to-white">\n      {/* Header */}\n      <header className="bg-white shadow-lg relative z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center py-4">
             {/* Logo */}
@@ -207,7 +270,7 @@ export default function Home() {
               <div className="w-12 h-12  bg-sky-500 rounded-full flex items-center justify-center">
                 <Elegance />
               </div>
-              <h1 className="text-2xl font-bold text-gray-900 transform hover:scale-110 transition-all duration-300">Elegance-technique</h1>
+              <h1 className="text-lg md:text-xl lg:text-2xl font-bold text-gray-900 transform hover:scale-110 transition-all duration-300 whitespace-nowrap">Elegance-technique</h1>
             </div>
 
             {/* Desktop Navigation */}
@@ -246,7 +309,7 @@ export default function Home() {
       </header>
 
       {/* Carousel Section */}
-      <section className="relative h-[500px] md:h-[600px] overflow-hidden">
+      <section className="relative h-[600px] md:h-[700px] lg:h-[800px] overflow-hidden">
         {/* Images */}
         <div className="relative h-full">
           {carouselImages.map((image, index) => (
@@ -261,29 +324,32 @@ export default function Home() {
                 alt={`Slide ${index + 1}`}
                 className="w-full h-full object-cover"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+              <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/80"></div>
             </div>
           ))}
         </div>
 
         {/* Content Overlay */}
         <div className="absolute inset-0 flex items-center justify-center z-10">
-          <div className="text-center px-14 md:px-4 max-w-4xl w-full">
-            <h2 className="text-2xl md:text-5xl lg:text-6xl font-bold mb-2 md:mb-4 text-white drop-shadow-[0_8px_16px_rgba(0,0,0,1)] [text-shadow:_2px_2px_8px_rgb(0_0_0_/_100%),_4px_4px_16px_rgb(0_0_0_/_80%)] animate-fade-in">
+          <div className="text-center px-6 md:px-8 max-w-5xl w-full space-y-6 md:space-y-8">
+            <h2 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold text-white drop-shadow-[0_8px_16px_rgba(0,0,0,1)] [text-shadow:_2px_2px_8px_rgb(0_0_0_/_100%),_4px_4px_16px_rgb(0_0_0_/_80%)] animate-fade-in whitespace-nowrap">
               <span className="text-sky-400">ELEGANCE</span>-TECHNIQUE
             </h2>
-            <h3 className="text-base md:text-2xl lg:text-3xl font-bold mb-3 md:mb-6 text-white drop-shadow-[0_8px_16px_rgba(0,0,0,1)] [text-shadow:_2px_2px_8px_rgb(0_0_0_/_100%),_4px_4px_16px_rgb(0_0_0_/_80%)]">
-              𝗖𝗟𝗜𝗠𝗔𝗧𝗜𝗦𝗔𝗧𝗜𝗢𝗡 𝗘𝗧 𝗦𝗘𝗥𝗩𝗜𝗖𝗘𝗦 𝗔𝗨𝗧𝗢 𝗖𝗘𝗥𝗧𝗜𝗙𝗜𝗘́𝗦
+            
+            <h3 className="text-lg sm:text-xl md:text-3xl lg:text-4xl font-bold text-white drop-shadow-lg px-4">
+              CLIMATISATION ET SERVICES AUTO CERTIFIÉS
             </h3>
-            <div className="bg-white backdrop-blur-md px-3 md:px-4 py-2 md:py-3 rounded-xl inline-block mb-3 md:mb-8 max-w-2xl mx-auto">
-              <p className="text-xs md:text-base text-white font-semibold leading-relaxed">
-                Chez Élégance-Technique, toutes nos prestations de climatisation et de services automobiles sont 
+            
+            <div className="bg-white/95 backdrop-blur-md px-6 py-5 md:px-8 md:py-6 rounded-2xl shadow-2xl mx-auto max-w-3xl">
+              <p className="text-sm md:text-base lg:text-lg text-gray-800 font-medium leading-relaxed">
+                Chez <span className="font-bold text-sky-600 whitespace-nowrap">Élégance-Technique</span>, toutes nos prestations de climatisation et de services automobiles sont 
                 réalisées avec rigueur. Nous garantissons la qualité, la fiabilité et votre tranquillité 
                 d'esprit à chaque intervention.
               </p>
             </div>
-            <div className="w-full px-2">
-              <a href='contacts' className="inline-block bg-sky-500 hover:bg-sky-600 text-white px-6 md:px-8 py-2 md:py-3 rounded-lg text-sm md:text-base font-semibold transition-all transform hover:scale-110 shadow-2xl hover:shadow-sky-500/50 animate-bounce-subtle">
+            
+            <div className="pt-4">
+              <a href='contacts' className="inline-block bg-sky-500 hover:bg-sky-600 text-white px-8 md:px-10 py-3 md:py-4 rounded-xl text-sm md:text-base lg:text-lg font-bold transition-all transform hover:scale-110 shadow-2xl hover:shadow-sky-500/50">
                 DEMANDE D'INFORMATION
               </a>
             </div>
@@ -293,29 +359,29 @@ export default function Home() {
         {/* Navigation Buttons */}
         <button
           onClick={prevSlide}
-          className="absolute left-1 md:left-4 top-1/2 -translate-y-1/2 z-20 bg-white/30 hover:bg-white/50 backdrop-blur-sm text-white p-2 md:p-3 rounded-full transition-all transform hover:scale-110"
+          className="absolute left-2 md:left-6 top-1/2 -translate-y-1/2 z-20 bg-white/30 hover:bg-white/50 backdrop-blur-md text-white p-2 md:p-4 rounded-full transition-all transform hover:scale-110 shadow-xl"
           aria-label="Previous slide"
         >
-          <ChevronLeft size={20} className="md:w-7 md:h-7" />
+          <ChevronLeft size={24} className="md:w-7 md:h-7" />
         </button>
         <button
           onClick={nextSlide}
-          className="absolute right-1 md:right-4 top-1/2 -translate-y-1/2 z-20 bg-white/30 hover:bg-white/50 backdrop-blur-sm text-white p-2 md:p-3 rounded-full transition-all transform hover:scale-110"
+          className="absolute right-2 md:right-6 top-1/2 -translate-y-1/2 z-20 bg-white/30 hover:bg-white/50 backdrop-blur-md text-white p-2 md:p-4 rounded-full transition-all transform hover:scale-110 shadow-xl"
           aria-label="Next slide"
         >
-          <ChevronRight size={20} className="md:w-7 md:h-7" />
+          <ChevronRight size={24} className="md:w-7 md:h-7" />
         </button>
 
         {/* Dots Indicator */}
-        <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-20 flex gap-2">
+        <div className="absolute bottom-8 md:bottom-12 left-1/2 -translate-x-1/2 z-20 flex gap-3">
           {carouselImages.map((_, index) => (
             <button
               key={index}
               onClick={() => setCurrentSlide(index)}
-              className={`w-3 h-3 rounded-full transition-all ${
+              className={`h-3 rounded-full transition-all shadow-lg ${
                 index === currentSlide 
-                  ? 'bg-sky-500 w-8' 
-                  : 'bg-white/50 hover:bg-white/80'
+                  ? 'bg-sky-500 w-10' 
+                  : 'bg-white/60 hover:bg-white/90 w-3'
               }`}
               aria-label={`Go to slide ${index + 1}`}
             />
@@ -477,15 +543,15 @@ export default function Home() {
        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
          <div className="grid md:grid-cols-4 gap-8 text-center text-white">
            <div className="p-6 transform hover:scale-110 transition-all duration-300 cursor-pointer">
-             <div className="text-3xl font-bold mb-2 animate-fade-in hover:text-sky-300 transition-colors">500+</div>
+             <div className="text-3xl font-bold mb-2 animate-fade-in hover:text-sky-300 transition-colors">7000+</div>
              <div className="text-sky-100 text-base">Clients Satisfaits</div>
            </div>
            <div className="p-6">
-             <div className="text-3xl font-bold mb-2">8+</div>
+             <div className="text-3xl font-bold mb-2">20+</div>
              <div className="text-sky-100 text-base">Ànnées d'Expérience</div>
            </div>
            <div className="p-6">
-             <div className="text-3xl font-bold mb-2">1000+</div>
+             <div className="text-3xl font-bold mb-2">7000+</div>
              <div className="text-sky-100 text-base">Interventions Réalisées</div>
            </div>
            <div className="p-6">
@@ -545,7 +611,7 @@ export default function Home() {
       {/* Promise Section */}
       <section className="py-20 bg-gradient-to-br from-sky-50 via-white to-sky-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-4xl md:text-5xl font-bold text-sky-600 mb-16">LA PROMESSE D'ELEGANCE-TECHNIQUE</h2>
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-sky-600 mb-16">LA PROMESSE D'<span className="whitespace-nowrap">ELEGANCE-TECHNIQUE</span></h2>
           
           <div className="grid md:grid-cols-3 gap-8 mb-12">
             <div className="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-all">
@@ -843,7 +909,7 @@ export default function Home() {
                 <div className="w-10 h-10  bg-sky-500 rounded-full flex items-center justify-center animate-float">
                   <Elegance />
                 </div>
-                <span className="text-xl font-bold transform hover:text-sky-400 transition-colors">ELEGANCE-TECHNIQUE</span>
+                <span className="text-base md:text-lg lg:text-xl font-bold transform hover:text-sky-400 transition-colors whitespace-nowrap">ELEGANCE-TECHNIQUE</span>
               </div>
               <p className="text-gray-400">Votre partenaire de confiance pour tout probleme de véhicules d'occasion ou noeuf.</p>
             </div>
@@ -884,6 +950,108 @@ export default function Home() {
           </div>
         </div>
       </footer>
+
+      {/* Chatbot */}
+      <div className="fixed bottom-6 right-6 z-50">
+        {/* Chat Window */}
+        {isChatOpen && (
+          <div className="mb-4 w-96 max-w-[calc(100vw-3rem)] bg-white rounded-2xl shadow-2xl border border-gray-200 flex flex-col max-h-[600px]">
+            {/* Chat Header */}
+            <div className="bg-gradient-to-r from-sky-600 to-sky-500 text-white p-4 rounded-t-2xl flex items-center justify-between">
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center">
+                  <MessageCircle className="w-6 h-6" />
+                </div>
+                <div>
+                  <h3 className="font-bold text-lg whitespace-nowrap">Assistant Elegance-Technique</h3>
+                  <p className="text-xs text-sky-100">En ligne</p>
+                </div>
+              </div>
+              <button 
+                onClick={() => setIsChatOpen(false)}
+                className="hover:bg-white/20 p-2 rounded-lg transition-colors"
+              >
+                <Minimize2 className="w-5 h-5" />
+              </button>
+            </div>
+
+            {/* Messages Area */}
+            <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-gray-50">
+              {messages.map((msg, index) => (
+                <div key={index} className={`flex ${msg.isBot ? 'justify-start' : 'justify-end'}`}>
+                  <div className={`max-w-[80%] rounded-2xl px-4 py-3 ${
+                    msg.isBot 
+                      ? 'bg-white text-gray-800 shadow-md border border-gray-200' 
+                      : 'bg-sky-600 text-white shadow-md'
+                  }`}>
+                    {msg.isBot && (
+                      <div className="flex items-center gap-2 mb-1">
+                        <Car className="w-4 h-4 text-sky-600" />
+                        <span className="text-xs font-semibold text-sky-600">Assistant</span>
+                      </div>
+                    )}
+                    <p className="text-sm leading-relaxed">{msg.text}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* Quick Questions */}
+            {messages.length === 1 && (
+              <div className="px-4 pb-3 bg-gray-50">
+                <p className="text-xs text-gray-600 mb-2 font-semibold">Questions fréquentes :</p>
+                <div className="grid grid-cols-2 gap-2">
+                  {quickQuestions.map((question, index) => (
+                    <button
+                      key={index}
+                      onClick={() => handleQuickQuestion(question)}
+                      className="text-xs bg-white hover:bg-sky-50 text-sky-600 border border-sky-200 px-3 py-2 rounded-lg transition-colors text-left"
+                    >
+                      {question}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* Input Area */}
+            <form onSubmit={handleChatSubmit} className="p-4 bg-white border-t border-gray-200 rounded-b-2xl">
+              <div className="flex gap-2">
+                <input
+                  type="text"
+                  value={inputMessage}
+                  onChange={(e) => setInputMessage(e.target.value)}
+                  placeholder="Tapez votre question..."
+                  className="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-500 text-sm"
+                />
+                <button
+                  type="submit"
+                  className="bg-sky-600 hover:bg-sky-700 text-white p-2 rounded-lg transition-colors"
+                >
+                  <Send className="w-5 h-5" />
+                </button>
+              </div>
+            </form>
+          </div>
+        )}
+
+        {/* Chat Button */}
+        <button
+          onClick={() => setIsChatOpen(!isChatOpen)}
+          className="bg-gradient-to-r from-sky-600 to-sky-500 hover:from-sky-700 hover:to-sky-600 text-white w-16 h-16 rounded-full shadow-2xl flex items-center justify-center transition-all transform hover:scale-110 relative"
+        >
+          {isChatOpen ? (
+            <X className="w-7 h-7" />
+          ) : (
+            <>
+              <MessageCircle className="w-7 h-7" />
+              <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs w-5 h-5 rounded-full flex items-center justify-center font-bold">
+                !
+              </span>
+            </>
+          )}
+        </button>
+      </div>
     </div>
   );
 };
